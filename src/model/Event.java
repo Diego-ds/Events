@@ -58,7 +58,28 @@ public class Event {
 		}
 	}
 
-	
-	
+	public String reportChair(String code,String desc,String audi){
+		boolean val = false;
+		String msg = "Error: the auditorium is not registered in that event\n";
+		for (int i =0;i<auditorios.length && !val ;i++ ) {
+			if(auditorios[i]!=null){
+				if(auditorios[i].getName().equalsIgnoreCase(audi)){
+					msg=auditorios[i].reportChair(code,desc);
+				}
+			}
+		}
+		return msg;
+	}
+
+	public String showChairEvent(String audi){
+		String msg="Error: the event doesn't exist\n";
+		for (int i=0;i<eventos.size() ;i++ ) {
+			if(eventos.get(i).equalsIgnoreCase(name)){
+				msg=event.get(i).showChairEvent();
+			}
+		}
+		return msg;
+
+	}
 
 }

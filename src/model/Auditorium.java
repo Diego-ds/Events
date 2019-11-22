@@ -78,7 +78,7 @@ public class Auditorium {
 					else if(sillas[i][j].getStatus().equalsIgnoreCase(Chair.DEFECTUOSA)){
 						msg+= Auditorium.RED+sillas[i][j].getCode();
 					}
-					else if(sillas[i][j].getStatus().equalsIgnoreCase(Chair.OCUPADO)){
+					else if(sillas[i][j].getStatus().equalsIgnoreCase(Auditorium.OCUPADO)){
 						msg+= Auditorium.BLUE+sillas[i][j].getCode();
 					}
 
@@ -93,7 +93,9 @@ public class Auditorium {
 			for (int j=0;j<sillas[0].length ;j++ ) {
 				int filaAlea = (int)(Math.random()*sillas.length+1);
 				int columAlea= (int)(Math.random()*sillas[0].length+1);
-				if(sillas[Math])
+				if(sillas[filaAlea][columAlea]!=null){
+					sillas[filaAlea][columAlea].setStatus(Auditorium.OCUPADO);
+				}
 			}
 		}
 	}

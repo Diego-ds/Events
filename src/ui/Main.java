@@ -124,13 +124,15 @@ public class Main {
 	}
 	public void reportChair(){
 		Scanner teclado = new Scanner(System.in);
-		System.out.println("Enter the name of the auditorium\n");
+		System.out.println("Enter the name of the event\n");
 		String name = teclado.nextLine();
+		System.out.println("Enter the name of the auditorium");
+		String audi = teclado.nextLine();
 		System.out.println("Enter the code of the chair. For example <A3>\n");
 		String code = teclado.nextLine();
 		System.out.println("Please type a description of the chair\n");
 		String desc = teclado.nextLine();
-		System.out.println(objUni.reportChair(code,desc,name)); 
+		System.out.println(objUni.reportChair(code,desc,name,audi)); 
 		
 	}
 

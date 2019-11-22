@@ -110,19 +110,25 @@ public class University {
 		return obj;
 	}
 
-	public String reportChair(String code,String desc,String name){
-		String msg = "Error: the auditorium doesn't exist";
+	public String reportChair(String code,String desc,String name,String audi){
+		String msg = "Error: the event doesn't exist";
 		boolean val = false;
-		for (int i =0;i<auditorios.length && !val ;i++ ) {
-			if(auditorios[i].getName().equalsIgnoreCase(name)){
-				msg= auditorios[i].reportChair(code,desc);
+		for (int i =0;i<eventos.size() && !val ;i++ ) {
+			if(eventos.get(i).getName().equalsIgnoreCase(name)){
+				msg= eventos.get(i).reportChair(code,desc,audi);
 				val = true;
 			}
 		}
 		return msg;
 	}
+	public String showChairEvent(String name,String audi){
+		String msg="Error: the event doesn't exist\n";
+		for (int i=0;i<eventos.size() ;i++ ) {
+			if(eventos.get(i).equalsIgnoreCase(name)){
+				msg=event.get(i).showChairEvent();
+			}
+		}
+		return msg;
 
-	
-
-
+	}
 }
