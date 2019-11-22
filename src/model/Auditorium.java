@@ -6,6 +6,10 @@ public class Auditorium {
 	private String name;
 	private String ubication;
 	private String status;
+	public static final String YELLOW = "\u001B[33m";
+	public static final String BLUE = "\u001B[34m";
+	public static final String GREEN = "\u001B[32m";
+	public static final String RED = "\u001B[31m";
 	public static final String DISPONIBLE = "Available";
 	public static final String OCUPADO = "Occupied";
 	//Constructor
@@ -62,4 +66,35 @@ public class Auditorium {
 		return msg;
 	}
 
+	public String showChairs(){
+		boolean val = false;
+		String msg = "";
+		for (int i =0;i<sillas.length ;i++ ) {
+			for (int j=0;j<sillas[0].length ;j++ ) {
+				if(sillas[i][j]!=null){
+					if(sillas[i][j].getStatus().equalsIgnoreCase(Chair.OPERATIVA)){
+						msg+= Auditorium.GREEN+sillas[i][j].getCode();
+					}
+					else if(sillas[i][j].getStatus().equalsIgnoreCase(Chair.DEFECTUOSA)){
+						msg+= Auditorium.RED+sillas[i][j].getCode();
+					}
+					else if(sillas[i][j].getStatus().equalsIgnoreCase(Chair.OCUPADO)){
+						msg+= Auditorium.BLUE+sillas[i][j].getCode();
+					}
+
+				}
+			}
+		}
+		return msg;
+	}
+
+	public void ocuparChair(){
+		for (int i=0;i<sillas.length ;i++ ) {
+			for (int j=0;j<sillas[0].length ;j++ ) {
+				int filaAlea = (int)(Math.random()*sillas.length+1);
+				int columAlea= (int)(Math.random()*sillas[0].length+1);
+				if(sillas[Math])
+			}
+		}
+	}
 }
