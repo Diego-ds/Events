@@ -125,7 +125,7 @@ public class University {
 		String msg="Error: the event doesn't exist\n";
 		for (int i=0;i<eventos.size() ;i++ ) {
 			if(eventos.get(i).equalsIgnoreCase(name)){
-				msg=event.get(i).showChairEvent();
+				msg=event.get(i).showChairEvent(audi);
 			}
 		}
 		return msg;

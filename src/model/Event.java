@@ -1,5 +1,21 @@
 package model;
-
+import java.time.*;
+/**import java.time.*;
+class Main {
+  public static void main(String[] args) {
+     int inicio =21;
+     int fer = 23;
+     String ini= String.valueOf(inicio)+":00:00";
+     String fin = String.valueOf(fer)+":00:00";
+     LocalTime start = LocalTime.parse(ini);
+     LocalTime finish = LocalTime.parse(fin);
+   LocalTime now = LocalTime.now();
+   if(now.isAfter(start) && now.isBefore(finish)){
+     System.out.println("Did it!");
+   }
+  }
+}
+*/
 public class Event {
 	private String name;
 	private String date;
@@ -72,10 +88,14 @@ public class Event {
 	}
 
 	public String showChairEvent(String audi){
-		String msg="Error: the event doesn't exist\n";
-		for (int i=0;i<eventos.size() ;i++ ) {
-			if(eventos.get(i).equalsIgnoreCase(name)){
-				msg=event.get(i).showChairEvent();
+		String msg="Error: the auditorium isn´t registered in this event\n";
+
+		boolean val = false;
+		for (int i=0;i<auditorios.length && !val ;i++ ) {
+			if(auditorios[i]!=null){
+				if(auditorios[i].getName().equalsIgnoreCase(audi)){
+
+				}
 			}
 		}
 		return msg;
