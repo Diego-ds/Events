@@ -44,17 +44,41 @@ public class Main {
 	}
 
 	public void createEvent() {
+		boolean val = true;
 		Scanner teclado = new Scanner(System.in);
 		Scanner teclado2 = new Scanner(System.in);
-		if(objUni.notRegister()){
+		while(val==true){
+			if(objUni.notRegister()){
+
+			}
+			else{
+				System.out.println("Error: You haven't registered auditoriums yet");
+				val =false;
+				break;
+			}	
 		System.out.println("Please enter the name of the event\n");
 		String name = teclado.nextLine();
 		System.out.println("Please enter the date of the event. Here is an example to help you out (YYYY-MM-DD)\n");
 		String date = teclado.nextLine();
-		System.out.println("Please enter the start time of the event.\nRemember the university is open just between 7 to 20\n");
+		System.out.println("Please enter the start time of the event. Without minutes\nRemember the university is open just between 7 to 20\n");
 		int startTime = teclado2.nextInt();
-		System.out.println("Please enter the finish time of the event\n");
+		if(startTime<7 || startTime>20){
+			System.out.println("Error: the hour exceed the schedule of the unversity\n");
+			val=false;
+			break;
+		}
+		System.out.println("Please enter the finish time of the event. Without minutes\nRemember the university is open just between 7 to 20\n");
 		int finishTime = teclado2.nextInt();
+		if(finishTime<7 || finishTime>20){
+			System.out.println("Error: the hour exceed the schedule of the unversity\n");
+			val=false;
+			break;
+		}
+		if(((finishTime)-(startTime))<2 || ((finishTime)-(startTime))>12){
+			System.out.println("Error: the duration of the event cannot be less than 2 hours or more than 12 hours\n");
+			val=false;
+			break;
+		}
 		System.out.println("Please enter the name of the teacher responsible of the event\n");
 		String nameTeacher = teclado.nextLine();
 		System.out.println("Please enter the name of the faculty\n");
@@ -70,13 +94,9 @@ public class Main {
 			usados[i]=teclado2.nextInt();
 		}
 		System.out.println(objUni.addEvent(name, date, startTime, finishTime, nameTeacher, faculty, totalPeople,usados));
-		}
-		else{
-			System.out.println("Error: You haven't registered auditoriums yet");
-		}
-
-		
+		val=false;	
 	}
+}
 	public void createAuditorium() {
 		Scanner teclado = new Scanner(System.in);
 		Scanner teclado2 = new Scanner(System.in);

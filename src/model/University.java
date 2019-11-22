@@ -14,9 +14,9 @@ public class University {
 	}
 	public String addEvent(String name, String date, int startTime, int finishTime, String nameTeacher, String faculty,int totalPeople,int[]usados) {
 		Event objEv = new Event(name,date,startTime,finishTime,nameTeacher,faculty,totalPeople,usados);
-		objEv.usoAuditorium(this.auditorios);
+		String msg = "";
+		msg=objEv.usoAuditorium(this.auditorios);
 		eventos.add(objEv);
-		String msg = "Event registered sucessfully";
 		return msg;
 	}
 	public String DeleteEvent(String name) {
@@ -124,8 +124,8 @@ public class University {
 	public String showChairEvent(String name,String audi){
 		String msg="Error: the event doesn't exist\n";
 		for (int i=0;i<eventos.size() ;i++ ) {
-			if(eventos.get(i).equalsIgnoreCase(name)){
-				msg=event.get(i).showChairEvent(audi);
+			if(eventos.get(i).getName().equalsIgnoreCase(name)){
+				msg=eventos.get(i).showChairEvent(audi);
 			}
 		}
 		return msg;

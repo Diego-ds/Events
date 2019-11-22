@@ -94,7 +94,21 @@ public class Auditorium {
 				int filaAlea = (int)(Math.random()*sillas.length+1);
 				int columAlea= (int)(Math.random()*sillas[0].length+1);
 				if(sillas[filaAlea][columAlea]!=null){
-					sillas[filaAlea][columAlea].setStatus(Auditorium.OCUPADO);
+					if(!sillas[filaAlea][columAlea].getStatus().equalsIgnoreCase(Chair.DEFECTUOSA)){
+						sillas[filaAlea][columAlea].setStatus(Auditorium.OCUPADO);
+					}					
+				}
+			}
+		}
+	}
+	public void desocuparChair(){
+		boolean val = false;
+		for (int i=0;i<sillas.length && !val ;i++ ) {
+			for (int j=0;j<sillas[0].length && !val ;j++ ) {
+				if(sillas[i][j]!=null){
+					if(!sillas[i][j].getStatus().equalsIgnoreCase(Chair.DEFECTUOSA)){
+						sillas[i][j].setStatus(Chair.OPERATIVA);
+					}
 				}
 			}
 		}

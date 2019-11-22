@@ -67,11 +67,14 @@ public class Event {
 				+ "\nName teacher: " + nameTeacher + "\nFaculty: " + faculty + "\nTotal people: " + totalPeople + "\n";
 	}
 
-	public void usoAuditorium(Auditorium audi[]){
+	public String usoAuditorium(Auditorium audi[]){
 		boolean val = false;
+		String msg = "";
 		for (int i=0;i<usados.length ;i++ ) {
 			auditorios[i]=audi[usados[i]-1];
+			msg="Event registered sucessfully";
 		}
+		return msg;
 	}
 
 	public String reportChair(String code,String desc,String audi){
@@ -89,12 +92,28 @@ public class Event {
 
 	public String showChairEvent(String audi){
 		String msg="Error: the auditorium isn´t registered in this event\n";
-
 		boolean val = false;
+		LocalTime horaActual = LocalTime.now();
+		LocalDate fechaActual = LocalDate.now();
+		LocalDate fechaEvento = LocalDate.parse(date);
+		String help = String.valueOf(startTime);
+		String help2 = String.valueOf(finishTime);
+		if(startTime<10){
+			LocalTime inicioEvent = LocalTime.parse("0"+help+":00:00");
+		}
+		else{
+			LocalTime inicioEvent = LocalTime.parse(help+":00:00");
+		}
+		if(finishTime<10){
+			LocalTime finalEvent = LocalTime.parse("0"+help2+":00:00");
+		}
+		else{
+			LocalTime finalEvent = LocalTime.parse(help2+":00:00");
+		}		
 		for (int i=0;i<auditorios.length && !val ;i++ ) {
 			if(auditorios[i]!=null){
 				if(auditorios[i].getName().equalsIgnoreCase(audi)){
-
+					if()
 				}
 			}
 		}
