@@ -82,27 +82,21 @@ public class Event {
 		LocalDate fechaEvento = LocalDate.parse(date);
 		String help = String.valueOf(startTime);
 		String help2 = String.valueOf(finishTime);
+		LocalTime inicioEvent = LocalTime.parse(help+":00:00");
+		LocalTime finalEvent = LocalTime.parse(help2+":00:00");
 		if(startTime<10){
-			LocalTime inicioEvent = LocalTime.parse("0"+help+":00:00");
-		}
-		else{
-			LocalTime inicioEvent = LocalTime.parse(help+":00:00");
+			inicioEvent = LocalTime.parse("0"+help+":00:00");
 		}
 		if(finishTime<10){
-			LocalTime finalEvent = LocalTime.parse("0"+help2+":00:00");
-		}
-		else{
-			LocalTime finalEvent = LocalTime.parse(help2+":00:00");
+			finalEvent = LocalTime.parse("0"+help2+":00:00");
 		}	
-		LocalTime startEvent = LocalTime.parse(inicioEvent);
-		LocalTime finishEvent = LocalTime.parse(finalEvent);	
 		for (int i=0;i<auditorios.length && !val ;i++ ) {
 			if(auditorios[i]!=null){
 				if(auditorios[i].getName().equalsIgnoreCase(audi)){
 					if(fechaEvento.compareTo(fechaActual)==0){
-						if(horaActual.isAfter(startEvent) && horaActual.isBefore(finishEvent)){
+						if(horaActual.isAfter(inicioEvent) && horaActual.isBefore(finalEvent)){
 							auditorios[i].setStatus(Auditorium.OCUPADO+"/ Event: "+name);
-							msg="Green: Available/ Red: Deficient/ Blue: Occupied\n";
+							msg="$: Available/ #: Deficient/ (): Occupied\n";
 							auditorios[i].ocuparChair();
 							msg+=auditorios[i].showChairs();
 							val=true;
@@ -110,14 +104,14 @@ public class Event {
 						else{
 							auditorios[i].setStatus(Auditorium.DISPONIBLE);
 							auditorios[i].desocuparChair();
-							msg="Green: Available/ Red: Deficient/ Blue: Occupied\n";
+							msg="$: Available/ #: Deficient/ (): Occupied\n";
 							msg+=auditorios[i].showChairs();
 						}
 					}
 					else{
 						auditorios[i].setStatus(Auditorium.DISPONIBLE);
 						auditorios[i].desocuparChair();
-						msg="Green: Available/ Red: Deficient/ Blue: Occupied\n";
+						msg="$: Available/ #: Deficient/ (): Occupied\n";
 						msg+=auditorios[i].showChairs();
 					}
 				}
@@ -127,4 +121,19 @@ public class Event {
 
 	}
 
+	public String porcenDefectuosas(String audi){
+		boolean val=false;
+		String msg ="Error: the auditorium isn´t registered in this";
+		for (int i =0;i<auditorios.length && !val ;i++ ) {
+			if(auditorios[i]!=null){
+				msg= auditorios[i].porcenDefectuosas();
+				val=true;
+			}
+			else{
+				val=true;
+			}
+		}
+		return msg;
+
+	}	
 }

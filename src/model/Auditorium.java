@@ -6,9 +6,6 @@ public class Auditorium {
 	private String name;
 	private String ubication;
 	private String status;
-	public static final String BLUE = "\u001B[34m";
-	public static final String GREEN = "\u001B[32m";
-	public static final String RED = "\u001B[31m";
 	public static final String DISPONIBLE = "Available";
 	public static final String OCUPADO = "Occupied";
 	//Constructor
@@ -72,13 +69,13 @@ public class Auditorium {
 			for (int j=0;j<sillas[0].length ;j++ ) {
 				if(sillas[i][j]!=null){
 					if(sillas[i][j].getStatus().equalsIgnoreCase(Chair.OPERATIVA)){
-						msg+= Auditorium.GREEN+sillas[i][j].getCode();
+						msg+= "$:"+sillas[i][j].getCode()+"/";
 					}
 					else if(sillas[i][j].getStatus().equalsIgnoreCase(Chair.DEFECTUOSA)){
-						msg+= Auditorium.RED+sillas[i][j].getCode();
+						msg+= "#:"+sillas[i][j].getCode()+"/";
 					}
 					else if(sillas[i][j].getStatus().equalsIgnoreCase(Auditorium.OCUPADO)){
-						msg+= Auditorium.BLUE+sillas[i][j].getCode();
+						msg+= "():"+sillas[i][j].getCode()+"/";
 					}
 
 				}
@@ -90,8 +87,8 @@ public class Auditorium {
 	public void ocuparChair(){
 		for (int i=0;i<sillas.length ;i++ ) {
 			for (int j=0;j<sillas[0].length ;j++ ) {
-				int filaAlea = (int)(Math.random()*sillas.length+1);
-				int columAlea= (int)(Math.random()*sillas[0].length+1);
+				int filaAlea = (int)(Math.random()*sillas.length+1)-1;
+				int columAlea= (int)(Math.random()*sillas[0].length+1)-1;
 				if(sillas[filaAlea][columAlea]!=null){
 					if(!sillas[filaAlea][columAlea].getStatus().equalsIgnoreCase(Chair.DEFECTUOSA)){
 						sillas[filaAlea][columAlea].setStatus(Auditorium.OCUPADO);
@@ -111,5 +108,24 @@ public class Auditorium {
 				}
 			}
 		}
+	}
+
+	public String porcenDefectuosas(){
+		int contDefec =0;
+		int totalChairs =0;
+		int porcentaje =0;
+		for (int i=0;i<sillas.length  ;i++ ) {
+			for (int j=0;j<sillas[0].length ;j++ ) {
+				if(sillas[i][j]!=null){
+					totalChairs++;
+					if(sillas[i][j].getStatus().equalsIgnoreCase(Chair.DEFECTUOSA)){
+						contDefec++;
+					}
+				}
+			}
+		}
+		porcentaje = (int)(contDefec*100)/totalChairs;
+		String porc = "The percent of deficient chairs is: "+String.valueOf(porcentaje)+"%\n";
+		return porc;
 	}
 }

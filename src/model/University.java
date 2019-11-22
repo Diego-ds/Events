@@ -32,7 +32,7 @@ public class University {
 		return msg;
 	}
 	public String showEvent() {
-		String msg = "";
+		String msg = "There are not events in the next days\n";
 		LocalDate today = LocalDate.now();
 		LocalDate next5 = today.plusDays(5);
 		for(int i =0;i<eventos.size();i++) {
@@ -81,7 +81,7 @@ public class University {
 		return val;
 	}
 
-	public Event buscarEvent(String name){
+	/*public Event buscarEvent(String name){
 		boolean val = false;
 		Event obj = null;
 		for (int i =0;i<eventos.size() && !val ;i++ ) {
@@ -108,7 +108,7 @@ public class University {
 			}
 		}
 		return obj;
-	}
+	}*/
 
 	public String reportChair(String code,String desc,String name,String audi){
 		String msg = "Error: the event doesn't exist";
@@ -130,5 +130,15 @@ public class University {
 		}
 		return msg;
 
+	}
+
+	public String porcenDefectuosas(String name,String audi){
+		String msg="Error: the event doesn't exist\n";
+		for(int i =0;i<eventos.size();i++){
+			if(eventos.get(i).getName().equalsIgnoreCase(name)){
+				msg=eventos.get(i).porcenDefectuosas(audi);
+			}
+		}
+		return msg;
 	}
 }

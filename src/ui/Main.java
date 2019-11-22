@@ -31,8 +31,17 @@ public class Main {
 				obj.showEvent();
 				break;
 			case 5:
-				val = false;
+				obj.showChairs();
 				break;
+			case 6:
+			 	obj.porcenDefectuosas();
+			 	break;
+			 case 7:
+			 	obj.reportChair();
+			 	break;
+			 case 8:
+			 	val=false;
+			 	break;
 			default:
 				System.out.println("Error: Wrong option\n");
 
@@ -136,7 +145,10 @@ public class Main {
 		System.out.println("Enter <2> to add an auditorium\n");
 		System.out.println("Enter <3> to delete a event\n");
 		System.out.println("Enter <4> to show the events in the next 5 days\n");
-		System.out.println("Enter <5> to exit\n");
+		System.out.println("Enter <5> to show the chairs of an event\n");
+		System.out.println("Enter <6> to calculate the percent of deficients chair in an event\n");
+		System.out.println("Enter <7> to report a deficient chair\n");
+		System.out.println("Enter <8> to exit\n");
 	}
 	public void showEvent() {
 		System.out.println(objUni.showEvent());
@@ -155,6 +167,24 @@ public class Main {
 		System.out.println(objUni.reportChair(code,desc,name,audi)); 
 		
 	}
+	public void showChairs(){
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("Enter the name of the event\n");
+		String name = teclado.nextLine();
+		System.out.println("Enter the name of the auditorium where the event is taking place\n");
+		String audi = teclado.nextLine();
+		System.out.println(objUni.showChairEvent(name,audi));
+	}
+
+
+	public void porcenDefectuosas(){
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("Enter the name of the event\n");
+		String name = teclado.nextLine();
+		System.out.println("Enter the name of the auditorium where the event is taking place\n");
+		String audi = teclado.nextLine();
+		System.out.println(objUni.porcenDefectuosas(name,audi));
+	} 
 
 
 }
